@@ -1,3 +1,4 @@
+import { ApiPath } from './../constant/ApiPath';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -9,11 +10,13 @@ export class ExpenseService {
 
   }
 
-  OnInit(){
-    this.getExpenses();
+  public getExpenses(): Observable<{}>{
+    return this.http.get(ApiPath.BACKEND+'expense/get');
   }
 
-  public getExpenses(): Observable<{}>{
-    return this.http.get('http://localhost:9090/expense/get')
+  public createExpenses(expens :any): Observable<{}>{
+    return this.http.get(ApiPath.BACKEND+'expense/create',expens);
   }
+
+
 }
