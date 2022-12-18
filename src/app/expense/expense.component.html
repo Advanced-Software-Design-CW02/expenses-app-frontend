@@ -1,0 +1,13 @@
+<div>
+    <mat-card *ngFor="let expen of expensess">
+        <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title>{{expen.name}}</mat-card-title>
+              <mat-card-subtitle>{{expen.amount}}</mat-card-subtitle>
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content>
+            {{expen.name}}
+          </mat-card-content>
+    </mat-card>
+</div>
