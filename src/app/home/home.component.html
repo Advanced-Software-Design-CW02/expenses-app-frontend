@@ -3,7 +3,7 @@
     ><img class="logo-image" src="/assets/image/logo.png" alt="image"
   /></span>
   <span>Pay Check</span>
-  <span>
+  <span *ngIf="!isShowLogin">
     <button routerLink="/dashbord" mat-button>Home</button>
 
     <button routerLink="/transaction" mat-button>Transaction</button>
@@ -14,6 +14,11 @@
 
     <button routerLink="/user" mat-button>User Details</button>
 
+    <button mat-button (click)="cleaerSession()">{{ "@" + username }}</button>
+  </span>
+  <span *ngIf="isShowLogin">
     <button routerLink="/registation" mat-button>Registation</button>
+
+    <button routerLink="/login" mat-button>Login</button>
   </span>
 </mat-toolbar>

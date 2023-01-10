@@ -1,18 +1,31 @@
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
-  
-  td {
-    padding-right: 8px;
-  }
-  
-  .center {
-      text-align: center;
-      border: 3px solid green;
-    }
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.parent {
+  display: flex;
+  margin-top: 10%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+td {
+  padding-right: 8px;
+}
+
+.center {
+  text-align: center;
+}
+
+.mainclass {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}

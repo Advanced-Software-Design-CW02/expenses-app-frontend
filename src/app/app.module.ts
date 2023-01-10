@@ -24,6 +24,11 @@ import { LoginComponent } from './view/login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './service/user.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryService } from './service/category.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RegistaionComponent,
     LoginComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -54,8 +60,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
+    NgbModule,
+    NgbAlertModule,
   ],
-  providers: [ExpenseService],
+
+  providers: [ExpenseService, UserService, CategoryService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

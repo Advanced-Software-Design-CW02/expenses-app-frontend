@@ -1,0 +1,31 @@
+<div class="parent">
+  <mat-card class="mainclass">
+    <p>
+      <ngb-alert *ngIf="showError" type="danger" [dismissible]="true">
+        Error in Login
+      </ngb-alert>
+
+      <ngb-alert *ngIf="showSuccsuse" type="success" [dismissible]="true">
+        Login successful
+      </ngb-alert>
+    </p>
+    <mat-card-content>User Login</mat-card-content>
+    <form [formGroup]="userFromGroup" class="example-form mainclass">
+      <p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput type="email" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput type="email" />
+        </mat-form-field>
+      </p>
+
+      <div class="example-button-row">
+        <button mat-button color="primary" (click)="userLogin()">Login</button>
+        <button mat-button color="warn" (click)="clearFrom()">Clear</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

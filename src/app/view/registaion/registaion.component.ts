@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
-import { NgToastService } from 'ng-angular-popup';
+
 @Component({
   selector: 'app-registaion',
   templateUrl: './registaion.component.html',
+
   styleUrls: ['./registaion.component.css'],
 })
 export class RegistaionComponent implements OnInit {
-  public userFromGroup!: FormGroup;
+  public userFromGroup: FormGroup;
+  public isShowLogin: boolean = false;
 
   constructor(private userService: UserService) {}
 
@@ -35,18 +37,34 @@ export class RegistaionComponent implements OnInit {
         this.f['lastName'].value,
         this.f['email'].value,
         this.f['age'].value,
-        this.f['job'].value
+        this.f['job'].value,
+        this.f['password'].value
       )
       .subscribe(
         (responce: any) => {
           if (responce != null) {
+            this.setUserObjectSession(responce);
+            this.clearFrom();
           }
         },
-        (error) => {}
+        (error) => {
+          console.log(error);
+        }
       );
   }
 
   public clearFrom() {
     this.userFromGroup.reset();
+  }
+
+  public setUserObjectSession(user: any) {
+    sessionStorage.setItem('user', JSON.stringify(user));
+  }
+
+  public getSessionData() {
+    let user = sessionStorage.getItem('user')
+    if (user === null) {
+      this.isShowLogin = true;
+    }
   }
 }

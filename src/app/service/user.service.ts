@@ -2,7 +2,6 @@ import { ApiPath } from './../constant/ApiPath';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
@@ -17,14 +16,16 @@ export class UserService {
     lastName: string,
     email: string,
     age: string,
-    job: string
+    job: string,
+    password: string
   ): Observable<{}> {
     let httParams: HttpParams = new HttpParams()
       .set('firstName', firstName)
       .set('lastName', lastName)
       .set('email', email)
       .set('age', age)
-      .set('job', job);
+      .set('job', job)
+      .set('password', password);
     return this.http.get(ApiPath.BACKEND + 'user/create', {
       params: httParams,
     });
@@ -54,6 +55,15 @@ export class UserService {
       .set('user_id', user_id)
       .set('category_id', category_id);
     return this.http.get(ApiPath.BACKEND + 'user/removecategory', {
+      params: httParams,
+    });
+  }
+
+  public userLogin(email: any, password: any): Observable<{}> {
+    let httParams: HttpParams = new HttpParams()
+      .set('email', email)
+      .set('password', password);
+    return this.http.get(ApiPath.BACKEND + 'user/login', {
       params: httParams,
     });
   }
