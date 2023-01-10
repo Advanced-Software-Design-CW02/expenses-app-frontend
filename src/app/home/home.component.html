@@ -1,29 +1,19 @@
-<mat-toolbar color='accent'>
-    <span><img class="logo-image" src="/assets/image/logo.png" alt="image"></span>
-    <span>Pay Check</span>
-    <button mat-button [matMenuTriggerFor]="aboveMenu">Transaction</button>
-<mat-menu #aboveMenu="matMenu" yPosition="above">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
+<mat-toolbar color="accent">
+  <span
+    ><img class="logo-image" src="/assets/image/logo.png" alt="image"
+  /></span>
+  <span>Pay Check</span>
+  <span>
+    <button routerLink="/dashbord" mat-button>Home</button>
 
-<button mat-button [matMenuTriggerFor]="belowMenu">Category</button>
-<mat-menu #belowMenu="matMenu" yPosition="below">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
+    <button routerLink="/transaction" mat-button>Transaction</button>
 
-<button mat-button [matMenuTriggerFor]="beforeMenu">Report</button>
-<mat-menu #beforeMenu="matMenu" xPosition="before">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
+    <button routerLink="/category" mat-button>Category</button>
 
+    <button routerLink="/report" mat-button>Report</button>
 
-<button mat-button [matMenuTriggerFor]="afterMenu">User Details</button>
-<mat-menu #afterMenu="matMenu" xPosition="after">
-  <button mat-menu-item>Manage User details</button>
-</mat-menu>
+    <button routerLink="/user" mat-button>User Details</button>
 
+    <button routerLink="/registation" mat-button>Registation</button>
+  </span>
 </mat-toolbar>
-<app-expense></app-expense>
