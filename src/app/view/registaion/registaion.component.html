@@ -46,10 +46,18 @@
       </table>
 
       <div class="example-button-row">
-        <button mat-button (click)="userRegistation()" color="primary">
-          Registaion
-        </button>
-        <button mat-button color="warn" (click)="clearFrom()">Clear</button>
+        <div class="d-grid gap-2">
+          <button
+            class="btn btn-outline-primary"
+            (click)="userRegistation()"
+            type="button"
+          >
+            Register
+          </button>
+          <button class="btn btn-outline-danger" (click)="clearFrom()">
+            Clear
+          </button>
+        </div>
       </div>
     </form>
   </mat-card>

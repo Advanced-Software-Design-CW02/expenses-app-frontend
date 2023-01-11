@@ -30,6 +30,6 @@ export class HomeComponent implements OnInit {
 
   public cleaerSession() {
     sessionStorage.removeItem('user');
-    window.location.reload();
+    window.location.replace('/');
   }
 }

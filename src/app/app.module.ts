@@ -1,5 +1,4 @@
 import { MatCardModule } from '@angular/material/card';
-import { ExpenseService } from './service/expense.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +30,8 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryService } from './service/category.service';
 import { LoadscreenComponent } from './view/loadscreen/loadscreen.component';
 import { MatSelectModule } from '@angular/material/select';
+import { UserTransaction } from './model/UserTransaction';
+import { UserTransactionService } from './service/userTransaction.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
   ],
 
-  providers: [ExpenseService, UserService, CategoryService],
+  providers: [UserService, CategoryService, UserTransactionService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

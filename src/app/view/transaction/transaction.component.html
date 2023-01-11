@@ -1,1 +1,136 @@
-<p>transaction works!</p>
+<div class="parent"></div>
+
+<div class="container text-center">
+  <h2>Manage Transaction</h2>
+  <div class="row">
+    <div class="col-6">
+      <mat-card>
+        <mat-card-content>Show Transaction </mat-card-content>
+
+        <div class="input-group flex-nowrap">
+          <input
+            [formControl]="searchTransaction"
+            type="text"
+            class="form-control"
+            placeholder="Search"
+          />
+        </div>
+        <br />
+        <ul class="list-group">
+          <li
+            *ngFor="let transaction of transactionList; let i = index"
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            {{ transaction.transactionAmount + " Rs" }}
+
+            <span
+              *ngIf="transaction.transactionBaseType == 'income'"
+              class="badge bg-success rounded-pill"
+              >{{ transaction.transactionBaseType }}</span
+            >
+
+            <span
+              *ngIf="transaction.transactionBaseType == 'expense'"
+              class="badge bg-danger rounded-pill"
+              >{{ transaction.transactionBaseType }}</span
+            >
+            <span class="badge bg-secondary">{{
+              transaction.category.name
+            }}</span>
+            <span>
+              {{ transaction.note }}
+            </span>
+
+            <span>
+              {{ transaction.date }}
+            </span>
+
+            <span>
+              <span>
+                <button
+                  color="accent"
+                  mat-mini-fab
+                  (click)="editeTransactions(transaction.id)"
+                >
+                  <mat-icon>edite</mat-icon>
+                </button>
+              </span>
+              <span
+                ><button
+                  mat-mini-fab
+                  color="primary"
+                  (click)="deleteTransactions(transaction.id)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button></span
+              >
+            </span>
+          </li>
+        </ul>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card>
+        <mat-card-content>Add Transaction </mat-card-content>
+        <form [formGroup]="transactionFromGroup">
+          <input
+            class="form-control"
+            formControlName="amount"
+            [defaultValue]="0"
+            placeholder="Amount"
+            type="number"
+          />
+          <br />
+          <textarea
+            class="form-control"
+            type="text"
+            formControlName="note"
+            placeholder="Note"
+          ></textarea>
+          <br />
+          <input
+            class="form-control"
+            formControlName="date"
+            [defaultValue]="0"
+            placeholder="Date"
+            type="date"
+          />
+
+          <br />
+          <mat-form-field class="form-control" appearance="fill">
+            <mat-label>Transaction Category</mat-label>
+            <mat-select formControlName="category">
+              <mat-option *ngFor="let type of userCategoryGroup" [value]="type">
+                {{ type.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br />
+          <div class="d-grid gap-2">
+            <br />
+            <button
+              *ngIf="!showUpdatebtn"
+              class="btn btn-primary"
+              (click)="createTransaction()"
+              type="button"
+            >
+              Create Transaction
+            </button>
+
+            <button
+              *ngIf="showUpdatebtn"
+              class="btn btn-warning"
+              (click)="updateTransaction()"
+              type="button"
+            >
+              Update Transaction
+            </button>
+            <button class="btn btn-danger" (click)="clearFrom()" type="button">
+              Clear
+            </button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
