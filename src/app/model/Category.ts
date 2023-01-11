@@ -5,5 +5,6 @@ export class Category{
       name!: string;
       budget!: number;
       transaction!: Transaction;
+      type!:string
       user!: User;
 }

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 import { CategoryComponent } from './view/category/category.component';
 import { HomedashboardComponent } from './view/homedashboard/homedashboard.component';
+import { LoadscreenComponent } from './view/loadscreen/loadscreen.component';
 import { LoginComponent } from './view/login/login.component';
 import { RegistaionComponent } from './view/registaion/registaion.component';
 import { ReportComponent } from './view/report/report.component';
@@ -9,6 +11,7 @@ import { TransactionComponent } from './view/transaction/transaction.component';
 import { UserviewComponent } from './view/userview/userview.component';
 
 const routes: Routes = [
+  { path: '', component: LoadscreenComponent },
   { path: 'dashbord', component: HomedashboardComponent },
   { path: 'category', component: CategoryComponent },
   { path: 'transaction', component: TransactionComponent },

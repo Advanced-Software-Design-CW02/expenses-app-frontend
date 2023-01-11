@@ -85,4 +85,8 @@ export class LoginComponent implements OnInit {
       window.location.reload();
     }
   }
+
+  public navigateToRegister() {
+    this.router.navigateByUrl('registation');
+  }
 }

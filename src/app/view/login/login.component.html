@@ -21,11 +21,19 @@
           <input formControlName="password" matInput type="email" />
         </mat-form-field>
       </p>
-
-      <div class="example-button-row">
-        <button mat-button color="primary" (click)="userLogin()">Login</button>
-        <button mat-button color="warn" (click)="clearFrom()">Clear</button>
-      </div>
     </form>
+    <div class="d-grid gap-2">
+      <button
+        class="btn btn-outline-primary"
+        (click)="userLogin()"
+        type="button"
+      >
+        Login
+      </button>
+      <button class="btn btn-danger" (click)="clearFrom()">Clear</button>
+      <button class="btn btn-outline-danger" (click)="navigateToRegister()">
+        Create new account
+      </button>
+    </div>
   </mat-card>
 </div>

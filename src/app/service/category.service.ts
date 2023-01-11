@@ -33,12 +33,14 @@ export class CategoryService {
     category_id: any,
     user_id: any,
     categoryName: string,
-    categoryBudget: any
+    categoryBudget: any,
+    categoryType: any
   ) {
     let httParams: HttpParams = new HttpParams()
       .set('id', category_id)
       .set('user_id', user_id)
       .set('categoryName', categoryName)
+      .set('type', categoryType)
       .set('categoryBudget', categoryBudget);
     return this.http.put(
       ApiPath.BACKEND + 'category/update',

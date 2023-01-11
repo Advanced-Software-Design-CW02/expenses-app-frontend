@@ -11,10 +11,12 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class CategoryComponent implements OnInit {
   public categoryFromGroup: FormGroup;
+  public searchCategory: FormControl;
   public user: any;
   public categoryList: any[];
   public showUpdatebtn: boolean = false;
   public selectedCategoryId: any;
+  public types = ['income', 'expense'];
 
   constructor(
     private categoryService: CategoryService,
@@ -27,6 +29,20 @@ export class CategoryComponent implements OnInit {
     this.categoryFromGroup = new FormGroup({
       categoryName: new FormControl(''),
       categoryBudget: new FormControl(''),
+      categoryType: new FormControl(''),
+    });
+
+    this.searchCategory = new FormControl('');
+
+    this.searchCategory.valueChanges.subscribe((val) => {
+      let category = val.trim().toLowerCase();
+      if (category.length > 0) {
+        this.categoryList = this.categoryList.filter((cat) => {
+          return cat.name.toLowerCase().match(val);
+        });
+      } else {
+        this.getCategoryForUser();
+      }
     });
   }
   get f() {
@@ -55,7 +71,7 @@ export class CategoryComponent implements OnInit {
     let category: Category = new Category();
     category.name = this.f['categoryName'].value;
     category.budget = this.f['categoryBudget'].value;
-
+    category.type = this.f['categoryType'].value;
     console.log(category);
 
     this.categoryService.createCategory(category).subscribe(
@@ -99,12 +115,17 @@ export class CategoryComponent implements OnInit {
   public editeCategory(
     category_id: any,
     category_name: any,
-    category_budget: any
+    category_budget: any,
+    category_type: any
   ) {
     this.showUpdatebtn = true;
     this.f['categoryName'].setValue(category_name);
     this.f['categoryBudget'].setValue(category_budget);
+    this.f['categoryType'].setValue(category_type);
     this.selectedCategoryId = category_id;
+  }
+  public onSearch(val) {
+    console.log(val);
   }
 
   public updateCategory() {
@@ -113,7 +134,8 @@ export class CategoryComponent implements OnInit {
         this.selectedCategoryId,
         this.user.id,
         this.f['categoryName'].value,
-        this.f['categoryBudget'].value
+        this.f['categoryBudget'].value,
+        this.f['categoryType'].value
       )
       .subscribe(
         (response: any) => {

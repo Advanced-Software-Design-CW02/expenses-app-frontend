@@ -29,6 +29,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryService } from './service/category.service';
+import { LoadscreenComponent } from './view/loadscreen/loadscreen.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { CategoryService } from './service/category.service';
     HomedashboardComponent,
     RegistaionComponent,
     LoginComponent,
+    LoadscreenComponent,
   ],
 
   imports: [
@@ -63,6 +66,7 @@ import { CategoryService } from './service/category.service';
     FontAwesomeModule,
     NgbModule,
     NgbAlertModule,
+    MatSelectModule,
   ],
 
   providers: [ExpenseService, UserService, CategoryService],

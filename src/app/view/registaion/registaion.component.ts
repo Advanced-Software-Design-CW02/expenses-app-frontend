@@ -45,6 +45,7 @@ export class RegistaionComponent implements OnInit {
           if (responce != null) {
             this.setUserObjectSession(responce);
             this.clearFrom();
+            this.reloadAndNavToDashbroScreen();
           }
         },
         (error) => {
@@ -62,9 +63,13 @@ export class RegistaionComponent implements OnInit {
   }
 
   public getSessionData() {
-    let user = sessionStorage.getItem('user')
+    let user = sessionStorage.getItem('user');
     if (user === null) {
       this.isShowLogin = true;
     }
+  }
+
+  public reloadAndNavToDashbroScreen() {
+    window.location.replace('/dashbord');
   }
 }

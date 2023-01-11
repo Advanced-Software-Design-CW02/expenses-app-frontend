@@ -1,11 +1,21 @@
 <div class="parent"></div>
 
 <div class="container text-center">
+  <h2>Manage Category</h2>
   <div class="row">
     <div class="col-6">
       <mat-card>
         <mat-card-content>Show Category </mat-card-content>
 
+        <div class="input-group flex-nowrap">
+          <input
+            [formControl]="searchCategory"
+            type="text"
+            class="form-control"
+            placeholder="Search"
+          />
+        </div>
+        <br />
         <ul class="list-group">
           <li
             *ngFor="let category of categoryList; let i = index"
@@ -13,10 +23,37 @@
           >
             {{ category.name }}
 
-            <span class="badge bg-primary rounded-pill">{{
-              category.budget
-            }}</span>
+            <span
+              *ngIf="category.budget == 0"
+              class="badge text-bg-info rounded-pill"
+              >No Budget Set</span
+            >
+            <span
+              *ngIf="category.budget != 0"
+              class="badge bg-primary rounded-pill"
+              >{{ category.budget }}</span
+            >
             <span>
+              {{ category.type }}
+            </span>
+
+            <span>
+              <span>
+                <button
+                  color="accent"
+                  mat-mini-fab
+                  (click)="
+                    editeCategory(
+                      category.id,
+                      category.name,
+                      category.budget,
+                      category.type
+                    )
+                  "
+                >
+                  <mat-icon>edite</mat-icon>
+                </button>
+              </span>
               <span
                 ><button
                   mat-mini-fab
@@ -26,18 +63,6 @@
                   <mat-icon>delete</mat-icon>
                 </button></span
               >
-
-              <span>
-                <button
-                  color="accent"
-                  mat-mini-fab
-                  (click)="
-                    editeCategory(category.id, category.name, category.budget)
-                  "
-                >
-                  <mat-icon>edite</mat-icon>
-                </button>
-              </span>
             </span>
           </li>
         </ul>
@@ -57,13 +82,24 @@
           <br />
           <input
             class="form-control"
-            type="text"
+            type="number"
+            [defaultValue]="0"
             formControlName="categoryBudget"
             placeholder="Category Budget"
             aria-label="readonly input example"
           />
           <br />
+          <mat-form-field class="form-control" appearance="fill">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="categoryType">
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br />
           <div class="d-grid gap-2">
+            <br />
             <button
               *ngIf="!showUpdatebtn"
               class="btn btn-primary"
