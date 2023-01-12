@@ -158,6 +158,14 @@ export class TransactionComponent implements OnInit {
     }
 
     if (this.transactionFromGroup.valid) {
+      let recurent = false;
+
+      if (this.f['recurent'].value == null) {
+        recurent = false;
+      } else {
+        recurent = this.f['recurent'].value;
+      }
+
       this.userTransactionService
         .createUserTransaction(
           this.f['category'].value.id,
@@ -165,7 +173,7 @@ export class TransactionComponent implements OnInit {
           this.f['amount'].value,
           this.f['note'].value,
           this.f['date'].value,
-          this.f['recurent'].value
+          recurent
         )
         .subscribe(
           (response) => {

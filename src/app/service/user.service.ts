@@ -67,4 +67,24 @@ export class UserService {
       params: httParams,
     });
   }
+
+  public updateUser(
+    id: any,
+    firstName: any,
+    lastName: any,
+    email: any,
+    job: any,
+    age: any
+  ): Observable<{}> {
+    let httParams: HttpParams = new HttpParams()
+      .set('email', email)
+      .set('lastName', lastName)
+      .set('user_id', id)
+      .set('job', job)
+      .set('age', age)
+      .set('firstName', firstName);
+    return this.http.get(ApiPath.BACKEND + 'user/update', {
+      params: httParams,
+    });
+  }
 }

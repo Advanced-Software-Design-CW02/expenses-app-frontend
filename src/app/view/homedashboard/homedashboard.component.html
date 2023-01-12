@@ -21,7 +21,7 @@
         <div class="card">
           <mat-card class="example-card div-expense">
             <mat-card-header>
-              <mat-card-subtitle>Total Income</mat-card-subtitle>
+              <mat-card-subtitle>Total Expense</mat-card-subtitle>
               <mat-card-title>{{
                 totalExpence > 0 ? (totalExpence | currency : "LKR") : 0
               }}</mat-card-title>
@@ -53,7 +53,7 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h2>Spend By Category</h2>
+            <h2>Transaction By Category</h2>
 
             <ol
               class="list-group list-group-numbered"
@@ -69,23 +69,50 @@
                     <div class="fw-bold">{{ spend.categoryName }}</div>
                     {{ spend.categoryType }}
                   </div>
-                  <div class="ms-2 me-auto">
-                    <span class="badge bg-primary">
-                      spend :
+                  <div class="ms-3 me-auto container">
+                    <h4 class="badge bg-secondary rounded-pill">
+                      <h4 class="badge bg-primary rounded-pill">
+                        {{
+                          spend.categoryType == "income"
+                            ? " Earning :"
+                            : "Spend :"
+                        }}
+
+                        {{ spend.totalSpend | currency : "LKR" }}
+                      </h4>
                       {{
                         spend.categoryBudegt == 0
                           ? "No Budget"
                           : (spend.categoryBudegt | currency : "LKR")
                       }}
-                    </span>
-                    <span class="badge bg-danger rounded-pill">
-                      Budget :
-                      {{ spend.totalSpend | currency : "LKR" }}
-                    </span>
+                    </h4>
                   </div>
                 </li>
               </div>
             </ol>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card card-body">
+          <h2>Spend vs Budget</h2>
+
+          <div class="card border-danger mb-2" style="max-width: 30rem">
+            <div class="card-body text-danger">
+              <h5 class="card-title">Expense</h5>
+              <p class="card-text">
+                {{ totalExpence | currency : "LKR" }}
+              </p>
+            </div>
+          </div>
+
+          <div class="card text-bg-light mb-3" style="max-width: 30rem">
+            <div class="card-body">
+              <h5 class="card-title">Total Budget</h5>
+              <p class="card-text">
+                {{ totalBudget | currency : "LKR" }}
+              </p>
+            </div>
           </div>
         </div>
       </div>

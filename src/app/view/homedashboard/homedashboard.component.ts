@@ -11,7 +11,7 @@ import { UserTransactionService } from 'src/app/service/userTransaction.service'
 export class HomedashboardComponent implements OnInit {
   public totalIncome: number = 0;
   public totalExpence: number = 0;
-
+  public totalBudget: number = 0;
   user: any;
 
   public userCategoryGroup: any[];
@@ -148,10 +148,17 @@ export class HomedashboardComponent implements OnInit {
     this.reportService.getSpendRepotByCategory(userID).subscribe(
       (response: any) => {
         this.spendRepot = response;
+        this.calTotalBudegt();
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  public calTotalBudegt() {
+    this.spendRepot.forEach((spend) => {
+      this.totalBudget = this.totalBudget + spend.categoryBudegt;
+    });
   }
 }
