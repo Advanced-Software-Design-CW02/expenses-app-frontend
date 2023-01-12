@@ -1,1 +1,94 @@
-<p>homedashboard works!</p>
+<div class="parent">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <mat-card class="example-card div-1">
+            <mat-card-header>
+              <mat-card-subtitle>Total Income</mat-card-subtitle>
+              <mat-card-title>{{
+                totalIncome > 0 ? (totalIncome | currency : "LKR") : 0
+              }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content> </mat-card-content>
+
+            <mat-card-footer> </mat-card-footer>
+          </mat-card>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <mat-card class="example-card div-expense">
+            <mat-card-header>
+              <mat-card-subtitle>Total Income</mat-card-subtitle>
+              <mat-card-title>{{
+                totalExpence > 0 ? (totalExpence | currency : "LKR") : 0
+              }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content> </mat-card-content>
+
+            <mat-card-footer> </mat-card-footer>
+          </mat-card>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <mat-card class="example-card div-flow">
+            <mat-card-header>
+              <mat-card-subtitle>Cash Flow</mat-card-subtitle>
+              <mat-card-title>{{
+                totalIncome - totalExpence | currency : "LKR"
+              }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content> </mat-card-content>
+
+            <mat-card-footer> </mat-card-footer>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h2>Spend By Category</h2>
+
+            <ol
+              class="list-group list-group-numbered"
+              *ngFor="let spend of spendRepot; let i = index"
+              [attr.data-index]="i"
+            >
+              <div>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-start"
+                >
+                  {{ i }}
+                  <div class="ms-8 me-auto">
+                    <div class="fw-bold">{{ spend.categoryName }}</div>
+                    {{ spend.categoryType }}
+                  </div>
+                  <div class="ms-2 me-auto">
+                    <span class="badge bg-primary">
+                      spend :
+                      {{
+                        spend.categoryBudegt == 0
+                          ? "No Budget"
+                          : (spend.categoryBudegt | currency : "LKR")
+                      }}
+                    </span>
+                    <span class="badge bg-danger rounded-pill">
+                      Budget :
+                      {{ spend.totalSpend | currency : "LKR" }}
+                    </span>
+                  </div>
+                </li>
+              </div>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

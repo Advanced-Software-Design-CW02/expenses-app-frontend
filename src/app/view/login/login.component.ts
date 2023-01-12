@@ -33,16 +33,22 @@ export class LoginComponent implements OnInit {
 
   public showErrorMessage() {
     this.showError = true;
-    setTimeout(function () {
-      this.showError = false;
-    }, 1000);
+    setTimeout(
+      function () {
+        this.showError = false;
+      }.bind(this),
+      1000
+    );
   }
 
   public showSucssusMessage() {
     this.showSuccsuse = true;
-    setTimeout(function () {
-      this.showSuccsuse = false;
-    }, 1000);
+    setTimeout(
+      function () {
+        this.showSuccsuse = false;
+      }.bind(this),
+      1000
+    );
   }
 
   public userLogin() {

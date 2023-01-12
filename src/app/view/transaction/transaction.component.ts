@@ -15,6 +15,12 @@ export class TransactionComponent implements OnInit {
   public transactionList: any[];
   public types = ['income', 'expense'];
   public showUpdatebtn: boolean = false;
+
+  public showError: boolean = false;
+  public errormsg: string = '';
+  public showSuccsuse: boolean = false;
+  public succsusemsg: string = '';
+
   user: any;
 
   constructor(
@@ -27,9 +33,10 @@ export class TransactionComponent implements OnInit {
     this.searchTransaction = new FormControl('');
     this.transactionFromGroup = new FormGroup({
       amount: new FormControl('', Validators.required),
-      note: new FormControl('', Validators.required),
+      note: new FormControl(''),
       category: new FormControl('', Validators.required),
-      date :new FormControl('', Validators.required)
+      date: new FormControl('', Validators.required),
+      recurent: new FormControl(false),
     });
     //search
     this.searchTransaction.valueChanges.subscribe((val) => {
@@ -39,9 +46,10 @@ export class TransactionComponent implements OnInit {
       if (transaction.length > 0) {
         this.transactionList = this.transactionList.filter((cat) => {
           return (
-            cat.amount.toString().match(val) ||
+            cat.transactionAmount.toString().match(val) ||
             cat.transactionBaseType.toLowerCase().match(val) ||
-            cat.note.toLowerCase().match(val)
+            cat.note.toLowerCase().match(val) ||
+            cat.category.name.toLowerCase().match(val)
           );
         });
       } else {
@@ -51,6 +59,33 @@ export class TransactionComponent implements OnInit {
 
     this.getUserDetails();
     this.getUserTransaction();
+  }
+
+  public showErrorMessage(message: string) {
+    console.log('error show');
+
+    this.showError = true;
+    this.errormsg = message;
+    setTimeout(
+      function () {
+        this.errormsg = '';
+        this.showError = false;
+        console.log(this.showError);
+      }.bind(this),
+      800
+    );
+  }
+
+  public showSucssusMessage(message: string) {
+    this.succsusemsg = message;
+    this.showSuccsuse = true;
+    setTimeout(
+      function () {
+        this.succsusemsg = '';
+        this.showSuccsuse = false;
+      }.bind(this),
+      800
+    );
   }
 
   public getUserDetails() {
@@ -79,9 +114,7 @@ export class TransactionComponent implements OnInit {
     );
   }
 
-  public editeTransactions(user_transaction_id: any) {
-
-  }
+  public editeTransactions(user_transaction_id: any) {}
 
   public deleteTransactions(user_transaction_id: any) {
     console.log(user_transaction_id);
@@ -93,18 +126,36 @@ export class TransactionComponent implements OnInit {
           this.transactionList.forEach((element, index) => {
             if (element == user_transaction_id)
               delete this.transactionList[index];
+            this.showSucssusMessage('Delete Sucssusful');
           });
 
           this.getUserTransaction();
         },
         (error) => {
           console.log(error);
+          this.showErrorMessage('Transaction delete Error');
         }
       );
   }
 
   public createTransaction() {
-    console.log(this.f);
+    console.log(this.transactionFromGroup);
+
+    if (!this.f['amount'].valid) {
+      this.showErrorMessage('Please enter amount ');
+
+      return;
+    }
+
+    if (!this.f['date'].valid) {
+      this.showErrorMessage('Please enter date ');
+      return;
+    }
+
+    if (!this.f['category'].valid) {
+      this.showErrorMessage('Please select category');
+      return;
+    }
 
     if (this.transactionFromGroup.valid) {
       this.userTransactionService
@@ -113,15 +164,18 @@ export class TransactionComponent implements OnInit {
           this.user.id,
           this.f['amount'].value,
           this.f['note'].value,
-          this.f['date'].value
+          this.f['date'].value,
+          this.f['recurent'].value
         )
         .subscribe(
           (response) => {
             this.clearFrom();
             this.getUserTransaction();
+            this.showSucssusMessage('Transaction create Sucssusful');
           },
           (error) => {
             console.log(error);
+            this.showErrorMessage('Transaction create Error');
           }
         );
     }

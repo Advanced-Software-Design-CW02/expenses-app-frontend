@@ -2,10 +2,17 @@
 
 <div class="container text-center">
   <h2>Manage Transaction</h2>
+  <ngb-alert *ngIf="showError" type="danger">
+    {{ errormsg }}
+  </ngb-alert>
+
+  <ngb-alert *ngIf="showSuccsuse" type="success">
+    {{ succsusemsg }}
+  </ngb-alert>
   <div class="row">
     <div class="col-6">
       <mat-card>
-        <mat-card-content>Show Transaction </mat-card-content>
+        <mat-card-content> Transaction List</mat-card-content>
 
         <div class="input-group flex-nowrap">
           <input
@@ -21,14 +28,19 @@
             *ngFor="let transaction of transactionList; let i = index"
             class="list-group-item d-flex justify-content-between align-items-center"
           >
-            {{ transaction.transactionAmount + " Rs" }}
+            {{ transaction.transactionAmount | currency : " " + "  Rs" }}
 
             <span
               *ngIf="transaction.transactionBaseType == 'income'"
               class="badge bg-success rounded-pill"
               >{{ transaction.transactionBaseType }}</span
             >
-
+            <mat-icon
+              *ngIf="transaction.recurring"
+              fontIcon="book"
+              aria-label="recurent transaction"
+              >cached icon</mat-icon
+            >
             <span
               *ngIf="transaction.transactionBaseType == 'expense'"
               class="badge bg-danger rounded-pill"
@@ -71,7 +83,7 @@
     </div>
     <div class="col">
       <mat-card>
-        <mat-card-content>Add Transaction </mat-card-content>
+        <mat-card-content><h4>Add Transaction</h4> </mat-card-content>
         <form [formGroup]="transactionFromGroup">
           <input
             class="form-control"
@@ -95,7 +107,17 @@
             placeholder="Date"
             type="date"
           />
-
+          <br />
+          <div class="form-check">
+            <input
+              formControlName="recurent"
+              class="form-check-input"
+              type="checkbox"
+            />
+            <label class="form-check-label" for="flexCheckIndeterminate">
+              recurrent transaction
+            </label>
+          </div>
           <br />
           <mat-form-field class="form-control" appearance="fill">
             <mat-label>Transaction Category</mat-label>

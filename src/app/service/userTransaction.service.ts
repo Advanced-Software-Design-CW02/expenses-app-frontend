@@ -12,13 +12,15 @@ export class UserTransactionService {
     userId: any,
     amount: number,
     note: any,
-    date: any
+    date: any,
+    recurent: boolean = false
   ): Observable<{}> {
     let httParams: HttpParams = new HttpParams()
       .set('categoryID', categoryId)
       .set('userID', userId)
       .set('amount', amount)
       .set('date', date)
+      .set('recurring', recurent)
       .set('note', note);
 
     return this.http.get(ApiPath.BACKEND + 'usertransaction/create', {

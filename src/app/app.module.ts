@@ -30,8 +30,8 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryService } from './service/category.service';
 import { LoadscreenComponent } from './view/loadscreen/loadscreen.component';
 import { MatSelectModule } from '@angular/material/select';
-import { UserTransaction } from './model/UserTransaction';
 import { UserTransactionService } from './service/userTransaction.service';
+import { ReportService } from './service/report.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +70,12 @@ import { UserTransactionService } from './service/userTransaction.service';
     MatSelectModule,
   ],
 
-  providers: [UserService, CategoryService, UserTransactionService],
+  providers: [
+    UserService,
+    CategoryService,
+    UserTransactionService,
+    ReportService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
