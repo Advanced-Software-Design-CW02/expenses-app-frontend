@@ -62,7 +62,7 @@
                 <button
                   color="accent"
                   mat-mini-fab
-                  (click)="editeTransactions(transaction.id)"
+                  (click)="editeTransaction(i)"
                 >
                   <mat-icon>edite</mat-icon>
                 </button>
@@ -120,7 +120,10 @@
           </div>
           <br />
           <mat-form-field class="form-control" appearance="fill">
-            <mat-label>Transaction Category</mat-label>
+            <mat-label *ngIf="!showUpdatebtn">Transaction Category</mat-label>
+            <mat-label *ngIf="showUpdatebtn">{{
+              f["category"].value.name
+            }}</mat-label>
             <mat-select formControlName="category">
               <mat-option *ngFor="let type of userCategoryGroup" [value]="type">
                 {{ type.name }}
@@ -147,8 +150,22 @@
             >
               Update Transaction
             </button>
-            <button class="btn btn-danger" (click)="clearFrom()" type="button">
+            <button
+              *ngIf="!showUpdatebtn"
+              class="btn btn-danger"
+              (click)="clearFrom()"
+              type="button"
+            >
               Clear
+            </button>
+
+            <button
+              *ngIf="showUpdatebtn"
+              class="btn btn-danger"
+              (click)="cancelUpdate()"
+              type="button"
+            >
+              Cancel update
             </button>
           </div>
         </form>

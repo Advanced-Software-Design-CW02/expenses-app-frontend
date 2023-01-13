@@ -47,4 +47,32 @@ export class UserTransactionService {
       params: httParams,
     });
   }
+
+  public updateUserTransaction(
+    categoryID: any,
+    userID: any,
+    transactionID: any,
+    userTransactionID: any,
+    amount: number,
+    note: any,
+    date: any,
+    recurring: boolean
+  ): Observable<{}> {
+    let httParams: HttpParams = new HttpParams()
+      .set('categoryID', categoryID)
+      .set('userID', userID)
+      .set('transactionID', transactionID)
+      .set('userTransactionID', userTransactionID)
+      .set('amount', amount)
+      .set('date', date)
+      .set('recurring', recurring)
+      .set('note', note);
+
+    return this.http.get(
+      ApiPath.BACKEND + 'usertransaction/updateTransaction',
+      {
+        params: httParams,
+      }
+    );
+  }
 }

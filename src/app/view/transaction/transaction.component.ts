@@ -21,6 +21,8 @@ export class TransactionComponent implements OnInit {
   public showSuccsuse: boolean = false;
   public succsusemsg: string = '';
 
+  public selectedTransaction: any;
+
   user: any;
 
   constructor(
@@ -114,8 +116,6 @@ export class TransactionComponent implements OnInit {
     );
   }
 
-  public editeTransactions(user_transaction_id: any) {}
-
   public deleteTransactions(user_transaction_id: any) {
     console.log(user_transaction_id);
 
@@ -193,9 +193,62 @@ export class TransactionComponent implements OnInit {
     return this.transactionFromGroup.controls;
   }
 
-  public updateTransaction() {}
+  public editeTransaction(i: any) {
+    console.log(this.transactionList[i]);
+    this.showUpdatebtn = true;
+    this.f['category'].setValue(this.transactionList[i].category);
+    this.f['amount'].setValue(this.transactionList[i].transactionAmount);
+    this.f['note'].setValue(this.transactionList[i].note);
+    this.f['date'].setValue(this.transactionList[i].date);
+    this.f['recurent'].setValue(this.transactionList[i].recurring);
+    this.selectedTransaction = this.transactionList[i];
+  }
+
+  public updateTransaction() {
+    let categroy = this.f['category'].value.id;
+    let user_id = this.user.id;
+    let transaction_id = this.selectedTransaction.transactionID;
+    let user_transaction_id = this.selectedTransaction.id;
+
+    let amount = this.f['amount'].value;
+    let note = this.f['note'].value;
+    let date = this.f['date'].value;
+    let recurent =
+      this.f['recurent'].value == null ? false : this.f['recurent'].value;
+
+    this.userTransactionService
+      .updateUserTransaction(
+        categroy,
+        user_id,
+        transaction_id,
+        user_transaction_id,
+        amount,
+        note,
+        date,
+        recurent
+      )
+      .subscribe(
+        (response: any) => {
+          if (response) {
+            this.showSucssusMessage('recode update successful');
+            this.getUserTransaction();
+            this.cancelUpdate();
+          }
+        },
+        (error: any) => {
+          console.log(error);
+
+          this.showErrorMessage('error in update');
+        }
+      );
+  }
 
   public clearFrom() {
     this.transactionFromGroup.reset();
+  }
+
+  public cancelUpdate() {
+    this.showUpdatebtn = false;
+    this.clearFrom();
   }
 }
