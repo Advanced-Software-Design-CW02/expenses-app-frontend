@@ -10,12 +10,13 @@
 
 .parent {
   display: flex;
+  padding-top: 2%;
+  padding-bottom: 13%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 10%;
+  background-color: #fcfcfc;
 }
-
 td {
   padding-right: 8px;
 }

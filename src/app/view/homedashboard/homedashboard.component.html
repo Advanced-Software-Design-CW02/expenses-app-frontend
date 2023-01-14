@@ -1,5 +1,6 @@
 <div class="parent">
   <div class="container text-center">
+    <h1>Pay check Dashbord</h1>
     <div class="row">
       <div class="col">
         <div class="card">
@@ -64,13 +65,15 @@
                 <li
                   class="list-group-item d-flex justify-content-between align-items-start"
                 >
-                  {{ i }}
+                  <!-- {{ i + 1 }} -->
                   <div class="ms-8 me-auto">
-                    <div class="fw-bold">{{ spend.categoryName }}</div>
-                    {{ spend.categoryType }}
+                    <h2>
+                      <div class="fw-bold">{{ spend.categoryName }}</div>
+                    </h2>
+                    <h4>{{ spend.categoryType }}</h4>
                   </div>
-                  <div class="ms-3 me-auto container">
-                    <h4 class="badge bg-secondary rounded-pill">
+                  <div class="ms-8 me-auto container">
+                    <h3 class="badge bg-secondary rounded-pill">
                       <h4 class="badge bg-primary rounded-pill">
                         {{
                           spend.categoryType == "income"
@@ -85,7 +88,7 @@
                           ? "No Budget"
                           : (spend.categoryBudegt | currency : "LKR")
                       }}
-                    </h4>
+                    </h3>
                   </div>
                 </li>
               </div>
