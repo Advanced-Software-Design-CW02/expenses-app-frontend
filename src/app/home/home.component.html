@@ -4,21 +4,41 @@
   /></span>
   <span>Pay Check</span>
   <span *ngIf="!isShowLogin">
-    <button routerLink="/dashbord" mat-button>Home</button>
-
-    <button routerLink="/transaction" mat-button>Transaction</button>
-
-    <button routerLink="/category" mat-button>Category</button>
-
-    <button routerLink="/report" mat-button>Report</button>
-
-    <button routerLink="/user" mat-button>User Details</button>
-
-    <button mat-button (click)="cleaerSession()">{{ "@" + username }} logout</button>
+    <button routerLink="/dashbord" mat-button>
+      <mat-icon>home</mat-icon>
+      Home
+    </button>
+  
+    <button routerLink="/transaction" mat-button>
+      <mat-icon>money</mat-icon>
+      Transaction
+    </button>
+  
+    <button routerLink="/category" mat-button>
+      <mat-icon>category</mat-icon>
+      Category
+    </button>
+  
+    <button routerLink="/report" mat-button>
+      <mat-icon>book</mat-icon>
+      Report
+    </button>
+  
+    <button routerLink="/user" mat-button>
+      <mat-icon>perm_contact_calendar</mat-icon>
+      User Details
+    </button>
+  
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>people</mat-icon> {{ username }}
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="cleaerSession()">Log out</button>
+    </mat-menu>
   </span>
   <span *ngIf="isShowLogin">
     <button routerLink="/registation" mat-button>Registation</button>
-
+  
     <button routerLink="/login" mat-button>Login</button>
   </span>
-</mat-toolbar>
+ </mat-toolbar>
