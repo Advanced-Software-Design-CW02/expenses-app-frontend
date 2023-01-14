@@ -10,7 +10,7 @@ export class UserService {
   public getUser(): Observable<{}> {
     return this.http.get(ApiPath.BACKEND + 'user/getall');
   }
-
+ 
   public createUser(
     firstName: string,
     lastName: string,

@@ -14,6 +14,8 @@
       <mat-card>
         <mat-card-content> Transaction List</mat-card-content>
 
+        <img class= "image" src="../../../assets/image/transaction.jpg">
+
         <div class="input-group flex-nowrap">
           <input
             [formControl]="searchTransaction"
@@ -64,7 +66,7 @@
                   mat-mini-fab
                   (click)="editeTransaction(i)"
                 >
-                  <mat-icon>edite</mat-icon>
+                  <mat-icon>edit</mat-icon>
                 </button>
               </span>
               <span
@@ -115,7 +117,7 @@
               type="checkbox"
             />
             <label class="form-check-label" for="flexCheckIndeterminate">
-              recurrent transaction
+              Recurrent Transaction
             </label>
           </div>
           <br />

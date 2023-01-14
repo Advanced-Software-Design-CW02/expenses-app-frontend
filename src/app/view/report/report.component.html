@@ -1,1 +1,78 @@
-<p>report works!</p>
+<div class="parent">
+    <mat-card class="mainclass">
+        <form [formGroup]="searchFromGroup">
+            <div class="row">
+                <h1>Transaction Report</h1>
+                <div>
+                    <img class= "image" src="../../../assets/image/report.jpg">
+                </div>
+
+                <div class="padding"> </div>
+                <div class="col">
+                    <input type="text" formControlName="keyword" class="form-control" placeholder="key word" />
+                </div>
+                
+
+                <div class="col-1">
+                    <button type="submit" class="btn btn-primary" (click)="searchTransaction()">
+                        Search
+                    </button>
+                </div>
+                <div class="col-1">
+                    <button type="submit" class="btn btn-outline-primary" (click)="resetSearch()">
+                        reset
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="padding"> </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Transaction ID</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Budget</th>
+                    <th scope="col">Spend/Budegt</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of transactionList; let i = index" [attr.data-index]="i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ transaction.transactionID + "_trn" }}</td>
+                    <td>{{ transaction.transactionAmount | currency : "LKR" }}</td>
+                    <td>
+                        <span *ngIf="transaction.category.type == 'income'" class="badge text-bg-success">
+                            {{ transaction.category.type }}</span>
+                        <span *ngIf="transaction.category.type == 'expense'" class="badge text-bg-warning">
+                            {{ transaction.category.type }}</span>
+                    </td>
+                    <td>{{ transaction.category.name }}</td>
+                    <td *ngIf="transaction.category.budget > 0">
+                        {{ transaction.category.budget | currency : "LKR" }}
+                    </td>
+                    <td *ngIf="transaction.category.budget == 0">
+                        <span class="badge text-bg-secondary">No budget set</span>
+                    </td>
+
+                    <td *ngIf="transaction.category.budget > 0">
+                        {{
+                        (transaction.transactionAmount / transaction.category.budget) *
+                        100 | number
+                        }}
+                        %
+                    </td>
+                    <td *ngIf="transaction.category.budget == 0">
+                        <span class="badge text-bg-secondary">No budget set</span>
+                    </td>
+                    <td>{{ transaction.note }}</td>
+                    <td>{{ transaction.date }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </mat-card>
+</div>
