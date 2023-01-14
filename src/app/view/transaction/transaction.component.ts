@@ -63,6 +63,7 @@ export class TransactionComponent implements OnInit {
     this.getUserTransaction();
   }
 
+  // show an error message if entered information is not valid
   public showErrorMessage(message: string) {
     console.log('error show');
 
@@ -78,6 +79,7 @@ export class TransactionComponent implements OnInit {
     );
   }
 
+  // show a success message if entered information is valid
   public showSucssusMessage(message: string) {
     this.succsusemsg = message;
     this.showSuccsuse = true;
@@ -90,6 +92,7 @@ export class TransactionComponent implements OnInit {
     );
   }
 
+  // get user details 
   public getUserDetails() {
     this.transactionList = [];
     this.userCategoryGroup = [];
@@ -104,6 +107,7 @@ export class TransactionComponent implements OnInit {
     );
   }
 
+  // get user transaction
   public getUserTransaction() {
     this.userTransactionService.getCategoryById(this.user.id).subscribe(
       (response: any) => {
@@ -116,6 +120,7 @@ export class TransactionComponent implements OnInit {
     );
   }
 
+  // delete transaction
   public deleteTransactions(user_transaction_id: any) {
     console.log(user_transaction_id);
 
@@ -138,6 +143,7 @@ export class TransactionComponent implements OnInit {
       );
   }
 
+  // create transaction
   public createTransaction() {
     console.log(this.transactionFromGroup);
 
@@ -193,6 +199,7 @@ export class TransactionComponent implements OnInit {
     return this.transactionFromGroup.controls;
   }
 
+  // edit transaction
   public editeTransaction(i: any) {
     console.log(this.transactionList[i]);
     this.showUpdatebtn = true;
@@ -204,6 +211,7 @@ export class TransactionComponent implements OnInit {
     this.selectedTransaction = this.transactionList[i];
   }
 
+  // update transaction 
   public updateTransaction() {
     let categroy = this.f['category'].value.id;
     let user_id = this.user.id;
@@ -243,10 +251,12 @@ export class TransactionComponent implements OnInit {
       );
   }
 
+  // clear form
   public clearFrom() {
     this.transactionFromGroup.reset();
   }
 
+  // cancel update
   public cancelUpdate() {
     this.showUpdatebtn = false;
     this.clearFrom();

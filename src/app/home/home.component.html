@@ -1,34 +1,39 @@
 <mat-toolbar color="accent">
-  <span
-    ><img class="logo-image" src="/assets/image/logo.png" alt="image"
-  /></span>
+  <span><img class="logo-image" src="/assets/image/logo.png" alt="image" /></span>
   <span>Pay Check</span>
   <span *ngIf="!isShowLogin">
+
+    <!-- Dashboard -->
     <button routerLink="/dashbord" mat-button>
       <mat-icon>home</mat-icon>
       Home
     </button>
-  
+
+    <!-- Transaction -->
     <button routerLink="/transaction" mat-button>
       <mat-icon>money</mat-icon>
       Transaction
     </button>
-  
+
+    <!-- Category -->
     <button routerLink="/category" mat-button>
       <mat-icon>category</mat-icon>
       Category
     </button>
-  
+
+    <!-- Report -->
     <button routerLink="/report" mat-button>
       <mat-icon>book</mat-icon>
       Report
     </button>
-  
+
+    <!-- User Details -->
     <button routerLink="/user" mat-button>
       <mat-icon>perm_contact_calendar</mat-icon>
       User Details
     </button>
-  
+
+    <!-- Logout -->
     <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon>people</mat-icon> {{ username }}
     </button>
@@ -36,9 +41,11 @@
       <button mat-menu-item (click)="cleaerSession()">Log out</button>
     </mat-menu>
   </span>
+
+  <!-- Registration -->
   <span *ngIf="isShowLogin">
     <button routerLink="/registation" mat-button>Registation</button>
-  
+
     <button routerLink="/login" mat-button>Login</button>
   </span>
- </mat-toolbar>
+</mat-toolbar>

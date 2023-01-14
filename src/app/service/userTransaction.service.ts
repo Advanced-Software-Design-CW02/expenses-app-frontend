@@ -28,6 +28,7 @@ export class UserTransactionService {
     });
   }
 
+  // get categories by Id
   public getCategoryById(userID: number): Observable<{}> {
     let httParams: HttpParams = new HttpParams().set('userID', userID);
     return this.http.get(
@@ -38,6 +39,7 @@ export class UserTransactionService {
     );
   }
 
+  // delete user transactions
   public deleteUserTransaction(userTransactionID: number): Observable<{}> {
     let httParams: HttpParams = new HttpParams().set(
       'userTransactionID',
@@ -48,6 +50,7 @@ export class UserTransactionService {
     });
   }
 
+  // update user transactions
   public updateUserTransaction(
     categoryID: any,
     userID: any,

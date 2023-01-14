@@ -27,10 +27,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  // clear login form 
   public clearFrom() {
     this.userFromGroup.reset();
   }
 
+  // show error message if information is not valid
   public showErrorMessage() {
     this.showError = true;
     setTimeout(
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  // show success message if information is valid
   public showSucssusMessage() {
     this.showSuccsuse = true;
     setTimeout(
@@ -51,6 +54,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  // user login 
   public userLogin() {
     console.log(this.userFromGroup);
 

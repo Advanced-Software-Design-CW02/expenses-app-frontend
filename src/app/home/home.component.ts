@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     this.getSessionData();
   }
 
+  // Get data from the session storage
   public getSessionData() {
     let user = sessionStorage.getItem('user');
 
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Clear data from the session storage
   public cleaerSession() {
     sessionStorage.removeItem('user');
     window.location.replace('/');

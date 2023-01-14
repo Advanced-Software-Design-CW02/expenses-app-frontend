@@ -31,6 +31,7 @@ export class UserService {
     });
   }
 
+  // get user by id
   public getUserByIDUser(id: any): Observable<{}> {
     let httParams: HttpParams = new HttpParams().set('id', id);
     return this.http.get(ApiPath.BACKEND + 'user/getuser', {
@@ -38,6 +39,7 @@ export class UserService {
     });
   }
 
+  // add categories to the user
   public addCategoryToUser(user_id: any, category_id: any): Observable<{}> {
     let httParams: HttpParams = new HttpParams()
       .set('user_id', user_id)
@@ -47,6 +49,7 @@ export class UserService {
     });
   }
 
+  // delete categories from user
   public removeCategoryFromUser(
     user_id: any,
     category_id: any
@@ -59,6 +62,7 @@ export class UserService {
     });
   }
 
+  // user login details - email and password 
   public userLogin(email: any, password: any): Observable<{}> {
     let httParams: HttpParams = new HttpParams()
       .set('email', email)
@@ -68,6 +72,7 @@ export class UserService {
     });
   }
 
+  // update user details
   public updateUser(
     id: any,
     firstName: any,

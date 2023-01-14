@@ -30,3 +30,13 @@ td {
   align-items: center;
   align-content: center;
 }
+
+.image {
+  width: 250px;
+  height: 250px;
+}
+
+.padding {
+  padding:5px;
+}
+

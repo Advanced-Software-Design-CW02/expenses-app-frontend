@@ -9,19 +9,23 @@ import { catchError, retry } from 'rxjs/operators';
 export class CategoryService {
   constructor(private http: HttpClient) {}
 
+  // create category
   public createCategory(category: Category): Observable<{}> {
     return this.http.post(ApiPath.BACKEND + 'category/create', category);
   }
 
+  // get all categories
   public getAllCategory(): Observable<{}> {
     return this.http.get(ApiPath.BACKEND + 'category/getall');
   }
 
+  // get category id
   public getCategoryById(categoryId: number): Observable<{}> {
     let httParams: HttpParams = new HttpParams().set('id', categoryId);
     return this.http.get(ApiPath.BACKEND + 'category/getcategory');
   }
 
+  // detele category id
   public deleteCategoryById(categoryId: number): Observable<{}> {
     let httParams: HttpParams = new HttpParams().set('id', categoryId);
     return this.http.delete(ApiPath.BACKEND + 'category/getcategory', {
@@ -29,6 +33,7 @@ export class CategoryService {
     });
   }
 
+  // update category
   public updateCategory(
     category_id: any,
     user_id: any,

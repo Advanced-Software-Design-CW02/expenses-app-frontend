@@ -1,5 +1,6 @@
 import { Category } from './Category';
 import { UserTransaction } from './UserTransaction';
+
 export class Transaction{
     id!: number;
     baseType!: string;

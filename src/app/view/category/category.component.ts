@@ -49,10 +49,12 @@ export class CategoryComponent implements OnInit {
     return this.categoryFromGroup.controls;
   }
 
+  // clear category form - will move to reset form
   public clearFrom() {
     this.categoryFromGroup.reset();
   }
 
+  // get categories for user
   public getCategoryForUser() {
     this.categoryList = [];
     this.userService.getUserByIDUser(this.user.id).subscribe(
@@ -67,6 +69,7 @@ export class CategoryComponent implements OnInit {
     );
   }
 
+  // create a category
   public createCategory() {
     let category: Category = new Category();
     category.name = this.f['categoryName'].value;
@@ -84,6 +87,7 @@ export class CategoryComponent implements OnInit {
     );
   }
 
+  // add categories
   public addCategoryToUser(category_id: any) {
     this.userService.addCategoryToUser(this.user.id, category_id).subscribe(
       (responce: any) => {
@@ -96,6 +100,8 @@ export class CategoryComponent implements OnInit {
     );
   }
 
+
+  // delete categories
   public deleteCategory(category_id: any) {
     this.userService
       .removeCategoryFromUser(this.user.id, category_id)
@@ -112,6 +118,7 @@ export class CategoryComponent implements OnInit {
       );
   }
 
+  // edit categories
   public editeCategory(
     category_id: any,
     category_name: any,
@@ -128,6 +135,7 @@ export class CategoryComponent implements OnInit {
     console.log(val);
   }
 
+  // update categories
   public updateCategory() {
     this.categoryService
       .updateCategory(

@@ -32,6 +32,7 @@ export class UserviewComponent implements OnInit {
     return this.userFromGroup.controls;
   }
 
+  // set data in user view
   public setData() {
     this.f['firstName'].setValue(this.user.firstName);
     this.f['lastName'].setValue(this.user.lastName);
@@ -40,6 +41,7 @@ export class UserviewComponent implements OnInit {
     this.f['age'].setValue(this.user.age);
   }
 
+  // update user view 
   public update() {
     this.userService
       .updateUser(

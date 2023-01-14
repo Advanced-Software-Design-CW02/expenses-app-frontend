@@ -54,6 +54,7 @@ export class RegistaionComponent implements OnInit {
       );
   }
 
+  // clear form
   public clearFrom() {
     this.userFromGroup.reset();
   }

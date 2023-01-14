@@ -30,6 +30,7 @@ export class ReportComponent implements OnInit {
     return this.searchFromGroup.controls;
   }
 
+  // get user transaction to the report
   public getUserTransaction() {
     this.userTransactionService.getCategoryById(this.user.id).subscribe(
       (response: any) => {
@@ -42,6 +43,7 @@ export class ReportComponent implements OnInit {
     );
   }
 
+  // search for the transaction that user made
   public searchTransaction() {
     let keyword = this.f['keyword'].value ? this.f['keyword'].value : '';
 
@@ -69,6 +71,7 @@ export class ReportComponent implements OnInit {
     }
   }
 
+  // reset the data
   public resetSearch() {
     this.searchFromGroup.reset();
     this.getUserTransaction();
