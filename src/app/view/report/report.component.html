@@ -4,14 +4,14 @@
             <div class="row">
                 <h1>Transaction Report</h1>
                 <div>
-                    <img class= "image" src="../../../assets/image/report.jpg">
+                    <img class="image" src="../../../assets/image/report.jpg">
                 </div>
 
                 <div class="padding"> </div>
                 <div class="col">
                     <input type="text" formControlName="keyword" class="form-control" placeholder="key word" />
                 </div>
-                
+
 
                 <div class="col-1">
                     <button type="submit" class="btn btn-primary" (click)="searchTransaction()">
@@ -59,12 +59,21 @@
                         <span class="badge text-bg-secondary">No budget set</span>
                     </td>
 
-                    <td *ngIf="transaction.category.budget > 0">
+                    <td *ngIf="
+                      transaction.category.budget > 0 &&
+                      transaction.category.type == 'expense'
+                    ">
                         {{
                         (transaction.transactionAmount / transaction.category.budget) *
                         100 | number
                         }}
                         %
+                    </td>
+                    <td *ngIf="
+              transaction.category.budget > 0 &&
+              transaction.category.type == 'income'
+            ">
+                        <span class="badge text-bg-success">Savings</span>
                     </td>
                     <td *ngIf="transaction.category.budget == 0">
                         <span class="badge text-bg-secondary">No budget set</span>
