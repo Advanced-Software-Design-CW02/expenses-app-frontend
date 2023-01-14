@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
             this.setUserObjectSession(responce);
             this.clearFrom();
             this.showSucssusMessage();
-            this.router.navigateByUrl('/dashbord');
+            window.location.replace('/dashbord');
           }
         },
         (error) => {
